@@ -1,0 +1,21 @@
+{
+  "name": "pdf-to-markdown",
+  "version": "1.0.0",
+  "description": "Convert PDFs to clean, layout-aware Markdown using LiteParse",
+  "type": "module",
+  "main": "pdf-to-markdown.mjs",
+  "bin": {
+    "pdf-to-markdown": "./pdf-to-markdown.mjs"
+  },
+  "scripts": {
+    "start": "node pdf-to-markdown.mjs",
+    "test": "node test.mjs"
+  },
+  "dependencies": {
+    "@llamaindex/liteparse": "file:../liteparse-main"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "Apache-2.0"
+}

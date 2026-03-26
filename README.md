@@ -22,6 +22,31 @@ A full developer guide to LiteParse, written by AI agents that read every source
 4. Advanced Usage (buffer input, OCR servers, multi-format, config)
 5. Full Library API Reference
 
+### Quick Win Project (`pdf-to-markdown/`)
+
+A practical CLI tool that converts PDFs to clean, layout-aware Markdown — built as a hands-on project demonstrating LiteParse's core features.
+
+```bash
+cd pdf-to-markdown && npm install
+node pdf-to-markdown.mjs report.pdf -o report.md
+node pdf-to-markdown.mjs scan.pdf --ocr --screenshots -o scan.md
+```
+
+| File | Description |
+|---|---|
+| [`pdf-to-markdown/README.md`](pdf-to-markdown/README.md) | Usage guide and examples |
+| [`pdf-to-markdown/FEATURES.md`](pdf-to-markdown/FEATURES.md) | Detailed walkthrough of every LiteParse feature used, with API examples and architecture diagrams |
+| [`pdf-to-markdown/pdf-to-markdown.mjs`](pdf-to-markdown/pdf-to-markdown.mjs) | The tool (~310 lines) |
+| [`pdf-to-markdown/test.mjs`](pdf-to-markdown/test.mjs) | Unit tests |
+
+**LiteParse features demonstrated:**
+- Spatial grid text extraction (tables, columns, layout)
+- Selective OCR with Tesseract.js (`--ocr`)
+- Page screenshots via PDFium (`--screenshots`)
+- Page selection (`--pages "1-5,10"`)
+- Multi-format support (DOCX, XLSX, images)
+- Batch processing (`--batch`)
+
 ### The Codebase (`liteparse-main/`)
 
 The original LiteParse source, unmodified. See [liteparse-main/README.md](liteparse-main/README.md) for the official documentation.
