@@ -55,10 +55,18 @@ node pdf-to-markdown.mjs deck.pdf --screenshots -o deck.md
 ## How It Works
 
 1. **Parse** — LiteParse extracts text from the PDF using its spatial grid projection algorithm, preserving layout structure (tables, columns, indentation)
-2. **Detect** — The tool identifies structural elements:
-   - **Tables**: Rows with 2+ cells separated by wide spacing become Markdown tables
+2. **OCR** (optional) — Pages with little native text or embedded images are automatically OCR'd using built-in Tesseract.js
+3. **Screenshot** (optional) — PDFium renders each page as a PNG; images are embedded in the Markdown output and image-only pages are flagged
+4. **Detect** — The tool identifies structural elements:
+   - **Tables**: Rows with 2+ cells separated by wide spacing become Markdown pipe tables
    - **Headings**: Short ALL-CAPS lines become `##` headings
-3. **Format** — Regular text passes through with layout preserved
+   - **Image-only pages**: Pages with < 20 chars of text are flagged with a note
+   - **Page structure**: Multi-page docs get `---` separators and `<!-- Page N -->` comments
+5. **Format** — Regular text passes through with layout preserved
+
+## LiteParse Features Used
+
+See [FEATURES.md](FEATURES.md) for a detailed walkthrough of every LiteParse feature this tool uses, including API examples, internal architecture, and how each feature maps to a CLI flag.
 
 ## Requirements
 
