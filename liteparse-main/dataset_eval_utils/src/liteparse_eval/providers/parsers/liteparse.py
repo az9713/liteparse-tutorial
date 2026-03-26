@@ -1,0 +1,65 @@
+from pathlib import Path
+from typing import Optional
+
+from liteparse import LiteParse
+
+from .base import ParserProvider
+
+
+class LiteparseProvider(ParserProvider):
+    """
+    Parser provider using the liteparse Python wrapper.
+
+    This provider uses the liteparse library for PDF text extraction.
+    """
+
+    def __init__(
+        self,
+        ocr_enabled: bool = False,
+        ocr_server_url: Optional[str] = None,
+        ocr_language: str = "en",
+        max_pages: int = 1000,
+        dpi: int = 150,
+        precise_bounding_box: bool = True,
+        skip_diagonal_text: bool = False,
+        preserve_very_small_text: bool = False,
+        cli_path: Optional[str] = None,
+    ):
+        """
+        Initialize the liteparse provider.
+
+        Args:
+            ocr_enabled: Whether to enable OCR for scanned documents
+            ocr_server_url: URL of HTTP OCR server (uses Tesseract if not provided)
+            ocr_language: Language code for OCR (e.g., "en", "fr", "de")
+            max_pages: Maximum number of pages to parse
+            dpi: DPI for rendering (affects OCR quality)
+            precise_bounding_box: Whether to compute precise bounding boxes
+            skip_diagonal_text: Whether to skip diagonal text
+            preserve_very_small_text: Whether to preserve very small text
+            cli_path: Custom path to liteparse CLI (auto-detected if not provided)
+        """
+        self.parser = LiteParse(cli_path=cli_path)
+        self.ocr_enabled = ocr_enabled
+        self.ocr_server_url = ocr_server_url
+        self.ocr_language = ocr_language
+        self.max_pages = max_pages
+        self.dpi = dpi
+        self.precise_bounding_box = precise_bounding_box
+        self.skip_diagonal_text = skip_diagonal_text
+        self.preserve_very_small_text = preserve_very_small_text
+
+    def extract_text(self, file_path: Path) -> str:
+        """Extract text from a document using liteparse."""
+        result = self.parser.parse(
+            file_path,
+            ocr_enabled=self.ocr_enabled,
+            ocr_server_url=self.ocr_server_url,
+            ocr_language=self.ocr_language,
+            max_pages=self.max_pages,
+            dpi=self.dpi,
+            precise_bounding_box=self.precise_bounding_box,
+            skip_diagonal_text=self.skip_diagonal_text,
+            preserve_very_small_text=self.preserve_very_small_text,
+        )
+        return result.text

@@ -1,0 +1,70 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Build output
+dist/
+bin/
+sea-prep.blob
+sea-config.json
+
+# Environment
+*claude*
+.env
+.env.local
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Test output
+screenshots/
+*.pdf
+
+# Temporary files
+tmp/
+temp/
+*.txt
+*.png
+deno.json
+
+# Python files
+*venv*
+__pycache__
+*.pyc
+*cache*
+
+# Test/dev directories (local testing)
+e2e-output/
+parsed_dataset/
+hard_docs/
+hard_docs_parsed/
+test-docs/
+test-docs-output/
+arxiv_screenshots/
+more_hard_docs/
+nytimes_imgs/
+ac/
+ltt/
+
+# OCR data files
+*.traineddata
+
+# Docs
+.docs-preview/
+docs/src/content/docs/liteparse/api.md
+docs/src/content/docs/liteparse/.api-tmp/

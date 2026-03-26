@@ -1,0 +1,26 @@
+[project]
+name = "liteparse-eval"
+version = "0.1.0"
+description = "Utilities for generating and evaluating datasets for PDF parsing performance."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=0.76.0",
+    "pillow>=10.0.0",
+    "pymupdf>=1.26.7",
+    "pypdf>=6.6.2",
+    "markitdown[all]",
+    "rapidfuzz>=3.14.3",
+    "liteparse @ file:///${PROJECT_ROOT}/../packages/python",
+]
+
+[project.scripts]
+lp-evaluate = "liteparse_eval.evaluation:main"
+lp-process = "liteparse_eval.processing:main"
+lp-benchmark = "liteparse_eval.benchmark:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
