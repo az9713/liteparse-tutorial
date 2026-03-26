@@ -1,0 +1,21 @@
+{
+  "name": "pdf-search",
+  "version": "1.0.0",
+  "description": "Search for text across PDFs with exact page and coordinate locations using LiteParse",
+  "type": "module",
+  "main": "pdf-search.mjs",
+  "bin": {
+    "pdf-search": "./pdf-search.mjs"
+  },
+  "scripts": {
+    "start": "node pdf-search.mjs",
+    "test": "node test.mjs"
+  },
+  "dependencies": {
+    "@llamaindex/liteparse": "file:../liteparse-main"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "Apache-2.0"
+}

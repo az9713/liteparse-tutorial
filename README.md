@@ -47,6 +47,30 @@ node pdf-to-markdown.mjs scan.pdf --ocr --screenshots -o scan.md
 - Multi-format support (DOCX, XLSX, images)
 - Batch processing (`--batch`)
 
+### Quick Win Project (`pdf-search/`)
+
+A CLI tool to search for text across PDFs with exact page and coordinate locations — like `grep` for PDFs. Complements pdf-to-markdown by using the LiteParse features it doesn't: JSON output, `searchItems()` API, bounding boxes, and buffer input.
+
+```bash
+cd pdf-search && npm install
+node pdf-search.mjs "revenue" report.pdf
+node pdf-search.mjs "total" *.pdf --json
+```
+
+| File | Description |
+|---|---|
+| [`pdf-search/README.md`](pdf-search/README.md) | Usage guide with output format examples |
+| [`pdf-search/pdf-search.mjs`](pdf-search/pdf-search.mjs) | The tool (~220 lines) |
+| [`pdf-search/test.mjs`](pdf-search/test.mjs) | Unit tests (searchItems API, context extraction) |
+
+**LiteParse features demonstrated:**
+- JSON output format with text item coordinates
+- `searchItems()` API with cross-item phrase matching
+- Precise bounding boxes for match locations
+- Buffer input from stdin (`--stdin`)
+- Selective OCR with Tesseract.js (`--ocr`)
+- Page selection (`--pages "1-5,10"`)
+
 ### The Codebase (`liteparse-main/`)
 
 The original LiteParse source, unmodified. See [liteparse-main/README.md](liteparse-main/README.md) for the official documentation.
